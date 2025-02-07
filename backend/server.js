@@ -1,5 +1,6 @@
 import express from 'express';
 import 'dotenv/config';
+import cors from 'cors';
 import userRoute from './routes/userRoute.js';
 import noteRoute from './routes/noteRoute.js';
 import mongoConnect from './config/dbConnection.js';
@@ -8,6 +9,7 @@ const app = express();
 
 const port = process.env.PORT;
 
+app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 
