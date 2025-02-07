@@ -8,7 +8,7 @@ export const sendEmail = (email,id) => {
     service: "gmail",
     auth: {
       user: process.env.EMAIL_USERNAME,
-      pass: process.env.PASSWORD
+      pass: process.env.EMAIL_PASSWORD
     }
   })
 
@@ -26,7 +26,7 @@ export const sendEmail = (email,id) => {
   }
 
   transporter.sendMail(mailConfigurations, function (error, info) {
-    if (error) throw Error(error);
+    if (error) console.log(error);
     console.log('Email Sent Successfully');
     console.log(`token : ${token}`);
   })
