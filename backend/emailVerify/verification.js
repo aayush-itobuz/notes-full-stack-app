@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
+import hbs from 'nodemailer-express-handlebars';
 
 export const sendEmail = (email,id) => {
   console.log("send",id);
@@ -12,6 +13,17 @@ export const sendEmail = (email,id) => {
     }
   })
 
+  transporter.use('compile', hbs({
+    viewEngine: {
+      extname:'.hbs',
+      layoutsDir: './views',
+      defaultLayout: false,
+      partialsDir: './views',
+    },
+    viewPath: './views',
+    extName: './hbs'
+  }))
+
   // token generate
   const token = jwt.sign({ id }, process.env.SECRET_KEY, { expiresIn: '30m' })
 
@@ -21,8 +33,10 @@ export const sendEmail = (email,id) => {
 
     subject: 'Email Verification',
 
-    text: `Hi! There, You have recently visited our website and entered your email.
-    Please follow the given link to verify your email http://localhost:3000/note/verify/${token}`
+    template: 'verificationMail',
+    context: {
+      token: `${token}`
+    }
   }
 
   transporter.sendMail(mailConfigurations, function (error, info) {

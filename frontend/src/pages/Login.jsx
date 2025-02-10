@@ -1,4 +1,9 @@
+import React from 'react';
 
-const Login = () => {
-  
+export const Login = () => {
+  return (
+    <>
+    <h2>Login page</h2>
+    </>
+  )
 }

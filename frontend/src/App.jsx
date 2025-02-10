@@ -1,13 +1,19 @@
-import './App.css'
-import Form from './component/Form'
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import { Login } from "./pages/login";
+import { Register } from "./pages/Register";
 
 function App() {
   return (
     <>
-      <Form />
+      <Router>
+        <Routes>
+        <Route path="/" element={<Register/>} />
+        <Route path="/login" element={<Login/>} />
+        </Routes>
+      </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
