@@ -86,7 +86,7 @@ export const userLogin = async (req, res) => {
 
     if (user.isVerified && passwordMatch) {
       const id = user._id;
-      const accessToken = jwt.sign({ id }, process.env.SECRET_KEY, { expiresIn: '1h' });
+      const accessToken = jwt.sign({ id }, process.env.SECRET_KEY, { expiresIn: '9h' });
       const refreshToken = jwt.sign({ id }, process.env.SECRET_KEY, { expiresIn: '30d' });
       user.isLogged = "true";
       await user.save();
