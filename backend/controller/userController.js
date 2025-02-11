@@ -76,7 +76,8 @@ export const userLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await userSchema.findOne({ email: `${email}` }, { email: 1, password: 1, isVerified: 1 }).exec();
-
+    console.log(user);
+    
     if (!user) {
       return res.status(404).json("Authentication failed");
     }

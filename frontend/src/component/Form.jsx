@@ -6,11 +6,9 @@ export default function Form() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-
 
     let config = {
       method: "post",
@@ -31,7 +29,6 @@ export default function Form() {
         console.log(error);
       });
   };
-  console.log(errors);
 
   return (
     <>
@@ -39,18 +36,21 @@ export default function Form() {
       <input
         type="text"
         placeholder="Username"
+        autoComplete="username"
         {...register("userName", { required: true, maxLength: 80 })}
         className="p-2 border-2 border-gray-400 rounded-lg"
       />
       <input
         type="email"
         placeholder="Email"
+        autoComplete="email"
         {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
         className="p-2 border-2 border-gray-400 rounded-lg"
       />
       <input
         type="password"
         placeholder="Password"
+        autoComplete="new-password"
         {...register("password", { required: true, min: 8 })}
         className="p-2 border-2 border-gray-400 rounded-lg"
       />

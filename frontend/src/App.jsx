@@ -1,17 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Login } from "./pages/login";
 import { Register } from "./pages/Register";
+import { EmailVerify } from "./pages/EmailVerify";
 
 function App() {
   return (
     <>
-      <Router>
-        <Routes>
-        <Route path="/" element={<Register/>} />
-        <Route path="/login" element={<Login/>} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/" element={<Register />} />
+        <Route path="/verify/:token" element={<EmailVerify />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </>
   );
 }

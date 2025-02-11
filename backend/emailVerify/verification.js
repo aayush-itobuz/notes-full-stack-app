@@ -2,9 +2,9 @@ import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
 import hbs from 'nodemailer-express-handlebars';
 
-export const sendEmail = (email,id) => {
-  console.log("send",id);
-  
+export const sendEmail = (email, id) => {
+  console.log("send", id);
+
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -15,13 +15,13 @@ export const sendEmail = (email,id) => {
 
   transporter.use('compile', hbs({
     viewEngine: {
-      extname:'.hbs',
+      extname: '.hbs',
       layoutsDir: './views',
       defaultLayout: false,
       partialsDir: './views',
     },
     viewPath: './views',
-    extName: './hbs'
+    extName: '.hbs'
   }))
 
   // token generate
@@ -41,8 +41,10 @@ export const sendEmail = (email,id) => {
 
   transporter.sendMail(mailConfigurations, function (error, info) {
     if (error) console.log(error);
-    console.log('Email Sent Successfully');
-    console.log(`token : ${token}`);
+    else {
+      console.log('Email Sent Successfully');
+      console.log(`token : ${token}`);
+    }
   })
 
   return token;
