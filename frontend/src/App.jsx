@@ -3,6 +3,7 @@ import "./App.css";
 import { Login } from "./pages/login";
 import { Register } from "./pages/Register";
 import { EmailVerify } from "./pages/EmailVerify";
+import { DashBoard } from "./pages/DashBoard";
 
 function App() {
   return (

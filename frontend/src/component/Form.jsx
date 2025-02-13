@@ -1,9 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import { ErrorMessage } from "@hookform/error-message";
 import axios from "axios";
 
 export default function Form() {
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     console.log(data);
@@ -38,7 +40,7 @@ export default function Form() {
           type="text"
           placeholder="Username"
           autoComplete="username"
-          {...register("userName", { required: true, maxLength: 80 })}
+          {...register("userName", { required: true, minLength: 3 })}
           className="p-2 border-2 border-gray-400 rounded-lg"
         />
         <input
@@ -59,17 +61,17 @@ export default function Form() {
               message: "Password is required",
             },
             validate: {
-              minLength: (value) =>
-                value.length >= 8 ||
-                "Password should has more than 8 characters",
-              isCapitalLetter: (value) =>
-                /[A-Z]/.test(value) ||
-                "Password should has at least one capital letter",
-              isLowerCaseLetter: (value) =>
-                /[a-z]/.test(value) ||
-                "Password should has at least one lower case letter",
-              isContainNumber: (value) =>
-                /\d/.test(value) || "Password should has at least one number",
+              // minLength: (value) =>
+              //   value.length >= 8 ||
+              //   "Password should has more than 8 characters",
+              // isCapitalLetter: (value) =>
+              //   /[A-Z]/.test(value) ||
+              //   "Password should has at least one capital letter",
+              // isLowerCaseLetter: (value) =>
+              //   /[a-z]/.test(value) ||
+              //   "Password should has at least one lower case letter",
+              // isContainNumber: (value) =>
+              //   /\d/.test(value) || "Password should has at least one number",
             },
           })}
         />
@@ -80,6 +82,7 @@ export default function Form() {
         >
           Submit
         </button>
+        <h4 className="text-center">Already have an account? <Link to='/login' className="text-blue-600 font-medium">Login</Link></h4>
       </form>
     </>
   );
