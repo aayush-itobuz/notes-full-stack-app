@@ -1,4 +1,5 @@
 import React from "react";
+// import 'dotenv/config';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -24,12 +25,20 @@ export const Login = () => {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
+        console.log(response.data);
+        console.log(response.data.accessToken);
+
+        localStorage.setItem('accessToken', response.data.accessToken);
+        localStorage.setItem('refreshToken', response.data.refreshToken);
+
+        const accessToken = localStorage.getItem('accessToken');
+        console.log(accessToken);
+        
+        navigate("/dashboard");
       })
       .catch((error) => {
         console.log(error);
       });
-      
   };
   return (
     <>

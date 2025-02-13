@@ -12,6 +12,7 @@ function App() {
         <Route path="/" element={<Register />} />
         <Route path="/verify/:token" element={<EmailVerify />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<DashBoard />} />
       </Routes>
     </>
   );
