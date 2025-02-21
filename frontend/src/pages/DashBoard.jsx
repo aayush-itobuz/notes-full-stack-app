@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { NoteCard } from "../component/NoteCard";
 import axios from "axios";
+import { NoteCard } from "../component/NoteCard";
+import NoteForm from "../component/NoteForm";
 
 export const DashBoard = () => {
   const [notes, setNotes] = useState([]);
@@ -29,7 +30,8 @@ export const DashBoard = () => {
   return (
     <>
       <h2 className="text-center mt-10 text-xl font-bold">DashBoard page</h2>
-      {notes.map(note=><NoteCard key={note._id} noteId={note.title} />)}
+      <NoteForm/>
+      {notes.map(note=><NoteCard key={note._id} noteId={note.title} noteContent={note.content} />)} 
       
     </>
   );

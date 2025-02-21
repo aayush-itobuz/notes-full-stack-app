@@ -1,11 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { ErrorMessage } from "@hookform/error-message";
 import axios from "axios";
 
 export default function Form() {
-  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     console.log(data);
