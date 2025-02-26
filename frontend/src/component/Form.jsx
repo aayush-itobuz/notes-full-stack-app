@@ -22,6 +22,7 @@ export default function Form() {
       .request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
+        localStorage.clear();
       })
       .catch((error) => {
         console.log(error);

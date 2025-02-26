@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
-export default function NoteForm() {
+export default function NoteForm({add,setadd}) {
   const { register, handleSubmit } = useForm();
   function onSubmition( data) {
     console.log(data);
@@ -20,6 +21,7 @@ export default function NoteForm() {
       .request(config)
       .then((response) => {
         console.log(response.data);
+        setadd(!add);
       })
 
       .catch((error) => {
