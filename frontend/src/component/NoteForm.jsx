@@ -1,27 +1,27 @@
 import axios from "axios";
+import { useForm } from "react-hook-form";
 
 export default function NoteForm() {
-  function handleSubmit(e, data) {
-    e.preventDefault();
-    console.log("note form submitted");
+  const { register, handleSubmit } = useForm();
+  function onSubmition( data) {
     console.log(data);
+    console.log("note form submitted");
 
     let config = {
       method: "post",
-      maxBodyLength: Infinity,
       url: "http://localhost:3000/note/add",
+      data: data,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        "Content-Type": "application/json",
       },
-      data: data,
     };
 
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
+        console.log(response.data);
       })
+
       .catch((error) => {
         console.log(error);
       });
@@ -29,19 +29,22 @@ export default function NoteForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmition)} className="m-5">
         <input
           type="text"
           placeholder="Title"
+          name="title"
+          {...register("title")}
           className="p-2 m-2 border-2 border-gray-400 rounded-lg"
         />
         <input
           type="text"
           placeholder="Content"
+          name="content"
+          {...register("content")}
           className="p-2 m-2 border-2 border-gray-400 rounded-lg"
         />
         <button
-          type="submit"
           className="border-2 p-1 border-gray-400 rounded-lg"
         >
           <h3>+</h3>
